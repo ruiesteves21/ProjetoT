@@ -30,12 +30,16 @@ public class MonitorOutputTransceiver {
         switch (reporterConfig.reportType) {
             case JSON:
                 transmitStrings();
+                break;
             case STRING:
                 transmitStrings();
+                break;
             case SQL_ALL_STRINGS:
                 transmitStrings();
+                break;
             case SQL:
                 transmitStrings();
+                break;
         }
     }
 

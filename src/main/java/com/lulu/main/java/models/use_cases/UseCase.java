@@ -1,33 +1,24 @@
 package com.lulu.main.java.models.use_cases;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class UseCase {
     public String name;
-    public URL pathToScript;
+    public String pathToScript;
     public String cmdToRunScript;
     public int numOfThreads;
     public ArrayList<RunnableUseCase> runnableUseCases = new ArrayList<>();
 
-    public UseCase(String name, String pathToScript, String cmdToRunScript, int numOfThreads) throws MalformedURLException {
+    public UseCase(String name, String pathToScript, String cmdToRunScript, int numOfThreads) {
         this.name = name;
-        //String encodedUrl = URLEncoder.encode(pathToScript, StandardCharsets.UTF_8);
-        //Path path = Paths.get(encodedUrl);
-        URL url = new URL(pathToScript);
-        this.pathToScript = url;
+        this.pathToScript = pathToScript;
         this.cmdToRunScript = cmdToRunScript;
         this.numOfThreads = numOfThreads;
     }
 
     public void run() {
         setRunnableUseCases();
-        System.out.println("Preparing " + name + " threads");
+        System.out.println("Preparing " + name + " " + numOfThreads + " threads");
         for (RunnableUseCase ruc : runnableUseCases) {
             Thread t = new Thread(ruc, ruc.name);
             t.start();
@@ -35,11 +26,19 @@ public class UseCase {
     }
 
     public boolean isRunning() {
-        for (RunnableUseCase ruc : runnableUseCases) if(!ruc.isRunning) return false;
+        for (RunnableUseCase ruc : runnableUseCases) if (!ruc.isRunning) return false;
         return true;
     }
 
+    private void setRunnableUseCases() {
+        for (int i = 1; i <= numOfThreads; i++) {
+            String threadName = name + i;
+            RunnableUseCase ruc = new RunnableUseCase(threadName, pathToScript, cmdToRunScript);
+            runnableUseCases.add(ruc);
+        }
+    }
 
+    /*
     private void setRunnableUseCases() {
         for (int i = 1; i <= numOfThreads; i++) {
             String threadName = name + i;
@@ -49,6 +48,7 @@ public class UseCase {
                     try {
                         // Run the script using the Runtime class
                         Process process = Runtime.getRuntime().exec(cmdToRunScript + " " + pathToScript.toString());
+                        System.out.println(process);
                         // Wait for the script to finish
                         process.waitFor();
                     } catch (Exception e) {
@@ -60,5 +60,6 @@ public class UseCase {
             runnableUseCases.add(ruc);
         }
     }
+     */
 
 }

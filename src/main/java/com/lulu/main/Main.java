@@ -9,7 +9,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         for (String s : args) {
-            new DslRunner(new URL(s));
+          //  new DslRunner(new URL(s));
+            new DslRunner(s);
         }
     }
 }

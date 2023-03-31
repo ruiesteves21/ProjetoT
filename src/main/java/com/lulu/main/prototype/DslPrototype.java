@@ -10,15 +10,15 @@ import com.lulu.main.java.models.use_cases.UseCase;
 import com.lulu.main.java.models.use_cases.UseCases;
 
 import java.io.IOException;
-import java.net.URL;
 import java.util.Arrays;
 
 public class DslPrototype {
     public static void main(String[] args) throws IOException, InterruptedException {
-        URL pathToYaml = new URL("file:///C:/Users/ruesteves/Documents/GitHub/LuluPerfTest/src/main/java/com/lulu/main/prototype/DslPrototype.yml");
+        String pathToYaml = "C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\DslPrototype.yml";
         DslParser parser = new DslParser(pathToYaml);
         UseCases useCases = parser.useCases;
         parser.run();
+
 
         // Define monitors
         ReporterConfiguration reporterConfiguration = new ReporterConfiguration();
@@ -30,12 +30,14 @@ public class DslPrototype {
         monitors.start();
         useCases.start();
 
+        /*
         for (UseCase useCase : useCases.getUseCases()) {
             loadTest(useCase);
-        }
+        }*/
         monitors.stopMonitoring();
     }
-// Ver este método
+
+    /*
     private static void loadTest(UseCase useCase) {
         int numRequests = 1000;
         int numThreads = useCase.numOfThreads;
@@ -55,7 +57,7 @@ public class DslPrototype {
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
         System.out.println("Load test for " + useCase.name + " completed in " + duration + " ms.");
-    }
+    }*/
 
 
 }

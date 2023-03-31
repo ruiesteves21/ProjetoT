@@ -4,19 +4,14 @@ import com.lulu.main.java.models.configurations.ReporterConfiguration;
 import com.lulu.main.java.models.monitors.*;
 import com.lulu.main.java.models.use_cases.UseCase;
 import com.lulu.main.java.models.use_cases.UseCases;
-import org.json.simple.JSONObject;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -25,9 +20,9 @@ public class DslParser {
     public UseCases useCases;
     public ReporterConfiguration reporterConfiguration;
 
-    public DslParser(URL url) throws IOException {
+    public DslParser(String path) {
         Yaml yaml = new Yaml(new Constructor(Map.class));
-        try (InputStream inputStream = url.openStream()) {
+        try (InputStream inputStream = new FileInputStream(path)) {
             Map<String, Object> script = yaml.load(inputStream);
             buildTest(script);
         } catch (IOException e) {
@@ -43,6 +38,7 @@ public class DslParser {
         }
         this.monitors.stopMonitoring();
     }
+
 
     private void buildTest(Map<String, Object> script) {
 
@@ -79,6 +75,7 @@ public class DslParser {
         int intThreadCount = (int) useCaseMap.get("threads");
         return new UseCase(useCaseName, pathToScript, command, intThreadCount);
     }
+
     private ReporterConfiguration buildReporterConfiguration(Map<String, Object> configMap) {
         ReporterConfiguration reporterConfig = new ReporterConfiguration();
         if (configMap.containsKey("reportType")) {
