@@ -7,28 +7,30 @@ import com.lulu.main.java.models.use_cases.UseCases;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class DslParser {
+    private final String pathToAuxYaml;
     public Monitors monitors;
     public UseCases useCases;
     public ReporterConfiguration reporterConfiguration;
 
-    public DslParser(String path) {
+    public DslParser(String pathToYaml, String pathToAuxYaml) {
+        this.pathToAuxYaml = pathToAuxYaml;
         Yaml yaml = new Yaml(new Constructor(Map.class));
-        try (InputStream inputStream = new FileInputStream(path)) {
+        try (InputStream inputStream = new FileInputStream(pathToYaml)) {
             Map<String, Object> script = yaml.load(inputStream);
             buildTest(script);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     public void run() throws InterruptedException {
         this.monitors.start();
@@ -49,11 +51,12 @@ public class DslParser {
 
         Map<String, Object> useCasesMap = (Map<String, Object>) performanceTest.get("User Group");
         List<Map<String, Object>> useCasesList = (List<Map<String, Object>>) useCasesMap.get("useCases");
+
         ArrayList<UseCase> useCases = new ArrayList<>();
         useCasesList.forEach(uc -> {
             try {
                 useCases.add(buildUseCase(uc));
-            } catch (MalformedURLException e) {
+            } catch (MalformedURLException | FileNotFoundException e) {
                 e.printStackTrace();
             }
         });
@@ -68,13 +71,27 @@ public class DslParser {
         this.monitors = new Monitors(metricMonitors);
     }
 
-    private UseCase buildUseCase(Map<String, Object> useCaseMap) throws MalformedURLException {
-        String useCaseName = (String) useCaseMap.get("name");
-        String pathToScript = (String) useCaseMap.get("script");
-        String command = (String) useCaseMap.get("command");
+    private UseCase buildUseCase(Map<String, Object> useCaseMap) throws MalformedURLException, FileNotFoundException {
+        Yaml yaml = new Yaml(new Constructor(Map.class));
+        InputStream auxInputStream = new FileInputStream(pathToAuxYaml);
+        Map<String, Object> scriptAux = yaml.load(auxInputStream);
+
+        String name = (String) useCaseMap.get("name");
         int intThreadCount = (int) useCaseMap.get("threads");
-        return new UseCase(useCaseName, pathToScript, command, intThreadCount);
+
+        String scriptPath = "";
+        String command = "";
+        List<Map<String, Object>> auxComandosList = (List<Map<String, Object>>) scriptAux.get("aux_comando");
+        for (Map<String, Object> auxComando : auxComandosList) {
+            if (name.equals(auxComando.get("name"))) {
+                command = (String) auxComando.get("command");
+                scriptPath = (String) auxComando.get("script");
+                break;
+            }
+        }
+        return new UseCase(name, scriptPath, command, intThreadCount);
     }
+
 
     private ReporterConfiguration buildReporterConfiguration(Map<String, Object> configMap) {
         ReporterConfiguration reporterConfig = new ReporterConfiguration();

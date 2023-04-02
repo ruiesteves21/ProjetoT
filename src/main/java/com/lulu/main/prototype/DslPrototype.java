@@ -6,7 +6,6 @@ import com.lulu.main.java.models.monitors.CpuMonitor;
 import com.lulu.main.java.models.monitors.MemoryMonitor;
 import com.lulu.main.java.models.monitors.MetricMonitor;
 import com.lulu.main.java.models.monitors.Monitors;
-import com.lulu.main.java.models.use_cases.UseCase;
 import com.lulu.main.java.models.use_cases.UseCases;
 
 import java.io.IOException;
@@ -15,7 +14,7 @@ import java.util.Arrays;
 public class DslPrototype {
     public static void main(String[] args) throws IOException, InterruptedException {
         String pathToYaml = "C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\DslPrototype.yml";
-        DslParser parser = new DslParser(pathToYaml);
+        DslParser parser = new DslParser(pathToYaml, pathToYaml);
         UseCases useCases = parser.useCases;
         parser.run();
 

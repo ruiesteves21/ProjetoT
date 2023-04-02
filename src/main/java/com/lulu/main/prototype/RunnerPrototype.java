@@ -7,6 +7,7 @@ import java.io.IOException;
 public class RunnerPrototype {
     public static void main(String[] args) throws IOException {
         String pathToYaml = new String("C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\DslPrototype.yml");
-        new DslRunner(pathToYaml);
+        String pathToAuxYaml = new String("C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\ToolPrototype.yml");
+        new DslRunner(pathToYaml, pathToAuxYaml);
     }
 }
