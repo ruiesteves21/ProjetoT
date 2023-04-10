@@ -7,7 +7,9 @@ import java.io.IOException;
 public class UseCasePrototype {
     public static void main(String[] args) throws InterruptedException, IOException {
         String pathToYaml = new String("C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\DslPrototype.yml");
-        DslParser parser = new DslParser(pathToYaml, pathToYaml);
+        String pathToAuxYaml = new String("C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\ToolPrototype.yml");
+
+        DslParser parser = new DslParser(pathToYaml, pathToAuxYaml);
         parser.run();
     }
 }

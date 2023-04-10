@@ -17,4 +17,14 @@ public class MonitorOutputDataAdapter {
     public String renderString() {
         return this.transmissionData.toString();
     }
+
+    public String renderCsvString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.transmissionData.get("threadId")).append(",");
+        sb.append(this.transmissionData.get("monitorIteration")).append(",");
+        sb.append(this.transmissionData.get("threadName")).append(",");
+        sb.append(this.transmissionData.get("data"));
+        return sb.toString();
+    }
+
 }

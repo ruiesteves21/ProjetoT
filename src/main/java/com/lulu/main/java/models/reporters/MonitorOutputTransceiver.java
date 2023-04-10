@@ -2,6 +2,7 @@ package com.lulu.main.java.models.reporters;
 
 import com.lulu.main.java.models.configurations.ReporterConfiguration;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
@@ -34,8 +35,8 @@ public class MonitorOutputTransceiver {
             case STRING:
                 transmitStrings();
                 break;
-            case SQL_ALL_STRINGS:
-                transmitStrings();
+            case TXT:
+                transmitTxtFile();
                 break;
             case SQL:
                 transmitStrings();
@@ -52,9 +53,42 @@ public class MonitorOutputTransceiver {
     }
 
     public void transmitStrings() {
-        for (MonitorOutputDataAdapter adapter : this.adapters) {
-            System.out.println(adapter.renderString());
+        if (reporterConfig.reportType == ReportType.JSON) {
+            try (PrintWriter writer = new PrintWriter(new File("output.csv"))) {
+                StringBuilder sb = new StringBuilder();
+                sb.append("threadId, monitorIteration, threadName, data\n");
+
+                for (MonitorOutputDataAdapter adapter : this.adapters) {
+                    sb.append(adapter.renderCsvString()).append("\n");
+                    System.out.println(adapter.renderString());
+                }
+
+                writer.write(sb.toString());
+                System.out.println("Output saved to output.csv");
+            } catch (FileNotFoundException e) {
+                System.err.println("Error writing output to CSV file: " + e.getMessage());
+            }
+        } else {
+            for (MonitorOutputDataAdapter adapter : this.adapters) {
+                System.out.println(adapter.renderString());
+            }
         }
     }
+
+    private void transmitTxtFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+            for (MonitorOutputDataAdapter adapter : this.adapters) {
+                String outputString = adapter.renderString();
+                System.out.println(outputString); // print to console
+                writer.write(outputString + "\n"); // write to file
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.err.println("Error writing to txt file: " + e.getMessage());
+        }
+    }
+
+
 
 }

@@ -4,5 +4,5 @@ public enum ReportType {
     STRING,
     JSON,
     SQL,
-    SQL_ALL_STRINGS
+    TXT
 }

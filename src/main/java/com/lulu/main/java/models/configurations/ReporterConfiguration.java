@@ -20,8 +20,8 @@ public class ReporterConfiguration {
                 return ReportType.JSON;
             case "sql":
                 return ReportType.SQL;
-            case "sql strings":
-                return ReportType.SQL_ALL_STRINGS;
+            case "txt":
+                return ReportType.TXT;
             default:
                 return ReportType.STRING;
         }

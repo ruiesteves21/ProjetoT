@@ -36,29 +36,6 @@ public class DslPrototype {
         monitors.stopMonitoring();
     }
 
-    /*
-    private static void loadTest(UseCase useCase) {
-        int numRequests = 1000;
-        int numThreads = useCase.numOfThreads;
-        String cmd = useCase.cmdToRunScript + " -r " + numRequests + " -t " + numThreads;
-
-        System.out.println("Starting load test for " + useCase.name + "...");
-        long startTime = System.currentTimeMillis();
-
-        // Execute the load test command
-        try {
-            Process p = Runtime.getRuntime().exec(cmd);
-            p.waitFor();
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        long endTime = System.currentTimeMillis();
-        long duration = endTime - startTime;
-        System.out.println("Load test for " + useCase.name + " completed in " + duration + " ms.");
-    }*/
-
-
 }
 
 
