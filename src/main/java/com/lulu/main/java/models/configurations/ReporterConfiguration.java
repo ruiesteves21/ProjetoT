@@ -4,11 +4,13 @@ import com.lulu.main.java.models.reporters.ReportType;
 
 public class ReporterConfiguration {
     public ReportType reportType;
+    public String testName;
 
     public ReporterConfiguration() {}
 
-    public void setReportType(String reportTypeString) {
+    public void setReportType(String reportTypeString, String testName) {
         this.reportType = reportTypeMap(reportTypeString);
+        this.testName = testName;
     }
 
     private static ReportType reportTypeMap(String reportTypeString) {

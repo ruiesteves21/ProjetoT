@@ -54,7 +54,7 @@ public class MonitorOutputTransceiver {
 
     public void transmitStrings() {
         if (reporterConfig.reportType == ReportType.JSON) {
-            try (PrintWriter writer = new PrintWriter(new File("output.csv"))) {
+            try (PrintWriter writer = new PrintWriter(new File(reporterConfig.testName + ".csv"))) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("threadId, monitorIteration, threadName, data\n");
 
@@ -64,7 +64,7 @@ public class MonitorOutputTransceiver {
                 }
 
                 writer.write(sb.toString());
-                System.out.println("Output saved to output.csv");
+                System.out.println("Output saved to " + reporterConfig.testName + ".csv");
             } catch (FileNotFoundException e) {
                 System.err.println("Error writing output to CSV file: " + e.getMessage());
             }

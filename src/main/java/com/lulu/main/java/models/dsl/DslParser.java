@@ -16,12 +16,14 @@ import java.util.Map;
 
 public class DslParser {
     private final String pathToAuxYaml;
+    private final String pathToYaml;
     public Monitors monitors;
     public UseCases useCases;
     public ReporterConfiguration reporterConfiguration;
 
     public DslParser(String pathToYaml, String pathToAuxYaml) {
         this.pathToAuxYaml = pathToAuxYaml;
+        this.pathToYaml = pathToYaml;
         Yaml yaml = new Yaml(new Constructor(Map.class));
         try (InputStream inputStream = new FileInputStream(pathToYaml)) {
             Map<String, Object> script = yaml.load(inputStream);
@@ -42,7 +44,7 @@ public class DslParser {
     }
 
 
-    private void buildTest(Map<String, Object> script) {
+    private void buildTest(Map<String, Object> script) throws FileNotFoundException {
 
         Map<String, Object> performanceTest = (Map<String, Object>) script.get("Performance Test");
 
@@ -93,11 +95,24 @@ public class DslParser {
     }
 
 
-    private ReporterConfiguration buildReporterConfiguration(Map<String, Object> configMap) {
+    private ReporterConfiguration buildReporterConfiguration(Map<String, Object> configMap) throws FileNotFoundException {
+        Yaml yaml = new Yaml(new Constructor(Map.class));
+        InputStream inputStream = new FileInputStream(pathToYaml);
+
+        Map<String, Object> script = yaml.load(inputStream);
+        Map<String, Object> performanceTest = (Map<String, Object>) script.get("Performance Test");
+
+        Map<String, Object> userGroup = (Map<String, Object>) performanceTest.get("User Group");
+
+        List<Map<String, Object>> useCasesMap = (List<Map<String, Object>>) userGroup.get("useCases");
+        Map<String, Object> useCaseMap = useCasesMap.get(0);
+        String name = (String) useCaseMap.get("name");
+        String testName = name;
+
         ReporterConfiguration reporterConfig = new ReporterConfiguration();
         if (configMap.containsKey("reportType")) {
             String reportTypeString = (String) configMap.get("reportType");
-            reporterConfig.setReportType(reportTypeString);
+            reporterConfig.setReportType(reportTypeString,testName);
         }
         return reporterConfig;
     }
