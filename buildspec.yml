@@ -21,7 +21,7 @@ post_build:
 artifacts:
   files:
     - target/LuluPerfTest.jar
-  base-directory: 'target'
+  base-directory: 'SourceArti'
   discard-paths: yes
   name: LuluPerfTest.jar
   type: zip
