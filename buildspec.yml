@@ -20,4 +20,4 @@ pre_build:
       - echo Build complete.
 artifacts:
   files:
-    - target/*.jar
+    - target/LuLuPerfTest.jar
