@@ -24,3 +24,8 @@ artifacts:
   base-directory: 'target'
   discard-paths: yes
   name: LuluPerfTest.jar
+  type: zip
+  namespace-type: s3
+  namespace: codepipeline-us-east-1-637000493493
+  region: us-east-1
+  path: AgnoPerfTest/
