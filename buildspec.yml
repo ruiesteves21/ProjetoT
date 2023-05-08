@@ -20,8 +20,8 @@ post_build:
     - echo Build complete.
 artifacts:
   files:
-    - target/LuluPerfTest.jar
-  base-directory: 'SourceArti'
+    - AgnoPerfTest/LuluPerfTest.jar
+  base-directory: 'AgnoPerfTest'
   discard-paths: yes
   name: LuluPerfTest.jar
   type: zip
