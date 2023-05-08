@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto11
+  pre_build:
+    commands:
+      - echo Installing Maven...
+      - wget -q -O - https://apache.osuosl.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz | tar -xzf -
+      - export PATH=$PATH:/root/apache-maven-3.8.3/bin
+  build:
+    commands:
+      - echo Building the application...
+      - mvn package
+  post_build:
+    commands:
+      - echo Build complete.
+artifacts:
+  files:
+    - target/*.jar

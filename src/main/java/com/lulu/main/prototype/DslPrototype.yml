@@ -2,9 +2,7 @@ Performance Test:
   User Group:
     name: Default
     useCases:
-      - name: Explore Petstore
-        script: https://petstore.octoperf.com/actions/Catalog.action
-        command: "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+      - name: k6
         threads: 5
   Monitors:
     - name: Memory
@@ -13,9 +11,3 @@ Performance Test:
       every: 500
   reporterConfiguration:
     reportType: json
-
-
-
-
-
-
