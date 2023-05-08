@@ -11,13 +11,13 @@ pre_build:
     - wget -q https://apache.osuosl.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz
     - tar -xzf apache-maven-3.8.3-bin.tar.gz
     - export PATH=$PATH:/root/apache-maven-3.8.3/bin
-  build:
-    commands:
-      - echo Building the application...
-      - mvn package
-  post_build:
-    commands:
-      - echo Build complete.
+build:
+  commands:
+    - echo Building the application...
+    - mvn package
+post_build:
+  commands:
+    - echo Build complete.
 artifacts:
   files:
     - target/LuluPerfTest.jar
