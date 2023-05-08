@@ -6,8 +6,12 @@ import java.io.IOException;
 
 public class RunnerPrototype {
     public static void main(String[] args) throws IOException {
-        String pathToYaml = new String("C:\\Users\\ruesteves\\Documents\\ProjetoTese\\src\\main\\java\\com\\lulu\\main\\prototype\\DslPrototype.yml");
-        String pathToAuxYaml = new String("C:\\Users\\ruesteves\\Documents\\ProjetoTese\\src\\main\\java\\com\\lulu\\main\\prototype\\ToolPrototype.yml");
+        String dslYamlPath = "DslPrototype.yml";
+        String toolYamlPath = "ToolPrototype.yml";
+        ClassLoader classLoader = RunnerPrototype.class.getClassLoader();
+        String pathToYaml = classLoader.getResource(dslYamlPath).getPath();
+        String pathToAuxYaml = classLoader.getResource(toolYamlPath).getPath();
+
         new DslRunner(pathToYaml, pathToAuxYaml);
     }
 }

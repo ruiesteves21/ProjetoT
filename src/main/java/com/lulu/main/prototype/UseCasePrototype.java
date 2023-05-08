@@ -6,8 +6,11 @@ import java.io.IOException;
 
 public class UseCasePrototype {
     public static void main(String[] args) throws InterruptedException, IOException {
-        String pathToYaml = new String("C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\DslPrototype.yml");
-        String pathToAuxYaml = new String("C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\ToolPrototype.yml");
+        String dslYamlPath = "DslPrototype.yml";
+        String toolYamlPath = "ToolPrototype.yml";
+        ClassLoader classLoader = RunnerPrototype.class.getClassLoader();
+        String pathToYaml = classLoader.getResource(dslYamlPath).getPath();
+        String pathToAuxYaml = classLoader.getResource(toolYamlPath).getPath();
 
         DslParser parser = new DslParser(pathToYaml, pathToAuxYaml);
         parser.run();
