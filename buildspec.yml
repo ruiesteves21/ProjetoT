@@ -7,6 +7,7 @@ phases:
   pre_build:
     commands:
       - echo Installing Maven...
+      - yum install wget -y
       - wget -q -O - https://apache.osuosl.org/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz | tar -xzf -
       - export PATH=$PATH:/root/apache-maven-3.8.3/bin
   build:
