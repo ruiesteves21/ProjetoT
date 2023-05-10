@@ -17,6 +17,7 @@ build:
     - mvn package
 post_build:
   commands:
+    - ls -al
     - echo Build complete.
 artifacts:
   files:
