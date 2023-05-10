@@ -20,4 +20,4 @@ post_build:
     - echo Build complete.
 artifacts:
   files:
-    - '**/*'
+    - 'myapp.jar'
