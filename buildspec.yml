@@ -15,11 +15,9 @@ build:
   commands:
     - echo Building the application...
     - mvn package
-    - echo Packaging the application...
-    - cp target/myapp.jar myapp.jar
 post_build:
   commands:
     - echo Build complete.
 artifacts:
   files:
-    - myapp.jar
+    - '**/*'
