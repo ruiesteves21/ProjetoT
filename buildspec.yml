@@ -17,8 +17,7 @@ build:
     - mvn package
 post_build:
   commands:
-    - ls -al target
     - echo Build complete.
 artifacts:
   files:
-    - '/codebuild/output/src674802301/target/LuluPerfTest.jar'
+    - '**/*'
