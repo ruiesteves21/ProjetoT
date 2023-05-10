@@ -21,4 +21,4 @@ post_build:
     - echo Build complete.
 artifacts:
   files:
-    - '/codebuild/output/src674802301/src/target/LuluPerfTest.jar'
+    - '/codebuild/output/src674802301/target/LuluPerfTest.jar'
