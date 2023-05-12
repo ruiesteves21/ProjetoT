@@ -2,7 +2,7 @@ Performance Test:
   User Group:
     name: Default
     useCases:
-      - name: k6
+      - name: browser
         threads: 5
   Monitors:
     - name: Memory
