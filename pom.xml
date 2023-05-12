@@ -82,6 +82,15 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <targetPath>resources</targetPath>
+                <includes>
+                    <include>DslPrototype.yml</include>
+                    <include>ToolPrototype.yml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
-
 </project>
