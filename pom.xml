@@ -56,7 +56,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.lulu.main.Main</mainClass>
+                            <mainClass>com.lulu.main.prototype.RunnerPrototype</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -85,7 +85,7 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <targetPath>resources</targetPath>
+                <targetPath>src/main/resources</targetPath>
                 <includes>
                     <include>DslPrototype.yml</include>
                     <include>ToolPrototype.yml</include>
