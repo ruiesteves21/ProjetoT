@@ -8,9 +8,7 @@ phases:
     commands:
       - echo Building the application...
       - mvn clean package
-      - cp DslPrototype.yml target/LuluPerfTest-jar-with-dependencies.jar
-      - cp ToolPrototype.yml target/LuluPerfTest-jar-with-dependencies.jar
   post_build:
     commands:
       - echo Running the application...
-      - java -cp LuluPerfTest-jar-with-dependencies.jar com.lulu.main.Main
+      - java -cp target/LuluPerfTest-jar-with-dependencies.jar com.lulu.main.Main
