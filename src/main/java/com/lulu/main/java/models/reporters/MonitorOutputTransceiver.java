@@ -29,7 +29,7 @@ public class MonitorOutputTransceiver {
     public void transmit() {
         this.translateSignals();
         switch (reporterConfig.reportType) {
-            case JSON:
+            case CSV:
                 transmitStrings();
                 break;
             case STRING:
@@ -53,7 +53,7 @@ public class MonitorOutputTransceiver {
     }
 
     public void transmitStrings() {
-        if (reporterConfig.reportType == ReportType.JSON) {
+        if (reporterConfig.reportType == ReportType.CSV) {
             try (PrintWriter writer = new PrintWriter(new File(reporterConfig.testName + ".csv"))) {
                 StringBuilder sb = new StringBuilder();
                 sb.append("threadId, monitorIteration, threadName, data\n");

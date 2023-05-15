@@ -2,7 +2,7 @@ package com.lulu.main.java.models.reporters;
 
 public enum ReportType {
     STRING,
-    JSON,
+    CSV,
     SQL,
     TXT
 }

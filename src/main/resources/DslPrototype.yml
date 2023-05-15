@@ -10,4 +10,4 @@ Performance Test:
     - name: CPU
       every: 500
   reporterConfiguration:
-    reportType: json
+    reportType: csv

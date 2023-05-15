@@ -18,8 +18,8 @@ public class ReporterConfiguration {
             return ReportType.STRING;
         }
         switch (reportTypeString.toLowerCase()) {
-            case "json":
-                return ReportType.JSON;
+            case "csv":
+                return ReportType.CSV;
             case "sql":
                 return ReportType.SQL;
             case "txt":

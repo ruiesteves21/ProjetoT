@@ -9,12 +9,17 @@ import com.lulu.main.java.models.monitors.Monitors;
 import com.lulu.main.java.models.use_cases.UseCases;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 
 public class DslPrototype {
     public static void main(String[] args) throws IOException, InterruptedException {
-        String pathToYaml = "C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\DslPrototype.yml";
-        DslParser parser = new DslParser(pathToYaml, pathToYaml);
+        String dslYamlPath = "DslPrototype.yml";
+        String toolYamlPath = "ToolPrototype.yml";
+        ClassLoader classLoader = RunnerPrototype.class.getClassLoader();
+        InputStream dslYamlStream = classLoader.getResourceAsStream(dslYamlPath);
+        InputStream toolYamlStream = classLoader.getResourceAsStream(toolYamlPath);
+        DslParser parser = new DslParser(dslYamlStream, toolYamlStream);
         UseCases useCases = parser.useCases;
         parser.run();
 

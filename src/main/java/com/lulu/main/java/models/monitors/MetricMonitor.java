@@ -1,5 +1,6 @@
 package com.lulu.main.java.models.monitors;
 
+import com.lulu.main.java.models.dsl.*;
 import com.lulu.main.java.models.configurations.ReporterConfiguration;
 import com.lulu.main.java.models.reporters.MonitorOutputTransceiver;
 
@@ -11,7 +12,6 @@ public abstract class MetricMonitor implements Monitoring, Runnable {
     public String name;
     public int metricCheckingFrequency;
     public String directory;
-    public String sysCommandForMetric;
     public volatile boolean isMonitoring;
     public Metric metric;
     public ReporterConfiguration reporterConfiguration;
@@ -65,8 +65,11 @@ public abstract class MetricMonitor implements Monitoring, Runnable {
     public void stopMonitoring() {
         isMonitoring = false;
         System.out.println(this.name + " Received stop command");
-        this.transceiver.transmit();
+        if (this.transceiver != null) {
+            this.transceiver.transmit();
+        }
     }
+
 
     public String threadName() {
         HashMap<Metric, String> metricStringMap = new HashMap<>();
