@@ -7,8 +7,8 @@ phases:
   pre_build:
     commands:
       - echo Copying YAML files...
-      - cp DslPrototype.yml target/classes/
-      - cp ToolPrototype.yml target/classes/
+      - cp src/main/resources/DslPrototype.yml target/classes/
+      - cp src/main/resources/ToolPrototype.yml target/classes/
   build:
     commands:
       - echo Building the application...
