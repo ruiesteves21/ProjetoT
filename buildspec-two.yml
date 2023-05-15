@@ -4,13 +4,11 @@ phases:
   install:
     runtime-versions:
       java: corretto17
-  pre_build:
-    commands:
-      - echo Installing dependencies...
-      - mvn install
   build:
-  commands:
-    - echo Running the program...
-    - javac -cp src/main/java src/main/java/com/lulu/main/prototype/RunnerPrototype.java
-    - java -cp src/main/java com.lulu.main.prototype.RunnerPrototype
-
+    commands:
+      - echo Compiling the application...
+      - mvn clean compile
+  post_build:
+    commands:
+      - echo Running the application...
+      - java -cp target/classes com.lulu.main.prototype.RunnerPrototype
