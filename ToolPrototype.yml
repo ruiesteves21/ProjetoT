@@ -1,0 +1,14 @@
+aux_comando:
+- name: jmeter
+  command: "\"C:\\Program Files\\apache-jmeter-5.5\\bin\\jmeter.bat\" -n -t"
+  script: "C:\\Users\\ruesteves\\Documents\\GitHub\\LuluPerfTest\\src\\main\\java\\com\\lulu\\main\\prototype\\example.jmx"
+
+- name: k6
+  command: "k6 run"
+  script: "C:\\Users\\ruesteves\\Desktop\\test.js"
+
+- name: browser
+  command: "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+  script: https://petstore.octoperf.com/actions/Catalog.action
+
+
