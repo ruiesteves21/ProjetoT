@@ -6,9 +6,9 @@ phases:
       java: corretto17
   build:
     commands:
-      - echo Compiling the application...
-      - mvn clean compile
+      - echo Building the application...
+      - mvn clean package
   post_build:
     commands:
       - echo Running the application...
-      - java -cp target/classes com.lulu.main.prototype.RunnerPrototype
+      - java -cp target/LuluPerfTest-jar-with-dependencies.jar com.lulu.main.prototype.RunnerPrototype
