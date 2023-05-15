@@ -6,15 +6,11 @@ phases:
       java: corretto17
   pre_build:
     commands:
-      - echo Copying YAML files...
-      - mkdir -p target/classes/
-      - cp src/main/resources/DslPrototype.yml target/classes/
-      - cp src/main/resources/ToolPrototype.yml target/classes/
+      - echo Installing dependencies...
+      - mvn install
   build:
-    commands:
-      - echo Building the application...
-      - mvn clean package
-  post_build:
-    commands:
-      - echo Running the application...
-      - java -cp target/LuluPerfTest-jar-with-dependencies.jar com.lulu.main.prototype.RunnerPrototype
+  commands:
+    - echo Running the program...
+    - javac -cp src/main/java src/main/java/com/lulu/main/prototype/RunnerPrototype.java
+    - java -cp src/main/java com.lulu.main.prototype.RunnerPrototype
+
