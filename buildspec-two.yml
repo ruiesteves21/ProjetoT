@@ -8,8 +8,8 @@ phases:
     commands:
       - echo Building the application...
       - mvn clean package
-      - cp src/main/resources/DslPrototype.yml target/
-      - cp src/main/resources/ToolPrototype.yml target/
+      - cp DslPrototype.yml target/
+      - cp ToolPrototype.yml target/
   post_build:
     commands:
       - echo Running the application...
