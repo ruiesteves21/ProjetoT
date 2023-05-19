@@ -2,7 +2,7 @@ Performance Test:
   User Group:
     name: Default
     useCases:
-      - name: browser
+      - name: jmeter
         threads: 5
   Monitors:
     - name: Memory

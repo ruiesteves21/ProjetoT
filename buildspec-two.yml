@@ -4,6 +4,20 @@ phases:
   install:
     runtime-versions:
       java: corretto17
+    commands:
+      - echo Downloading JMeter installation artifact...
+      - aws s3 cp s3://agnoperftest/JMeter/jmeter-installation.zip .
+      - echo "Extracting JMeter installation..."
+      - unzip -q jmeter-installation.zip
+
+      -echo Downloading K6 installation artifact...
+      - aws s3 cp s3://agnoperftest/K6/k6-installation.zip .
+      - echo "Extracting K6 installation..."
+      - unzip -q k6-installation.zip
+      - echo "Installing K6..."
+      - chmod +x ./k6-installation
+      - ./k6-installation/install.sh
+
   build:
     commands:
       - echo Building the application...
