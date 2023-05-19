@@ -14,8 +14,8 @@ public class RunnerPrototype {
          */
 
 
-        String dslYamlURL = "https://raw.githubusercontent.com/ruiesteves21/ProjetoT/main/TestResults/DslPrototype.yml";
-        String toolYamlURL = "https://raw.githubusercontent.com/ruiesteves21/ProjetoT/main/TestResults/ToolPrototype.yml";
+        String dslYamlURL = "https://raw.githubusercontent.com/ruiesteves21/ProjetoT/main/DslPrototype.yml";
+        String toolYamlURL = "https://raw.githubusercontent.com/ruiesteves21/ProjetoT/main/ToolPrototype.yml";
 
         // Use the URLs in your code
         String pathToYaml = dslYamlURL;
