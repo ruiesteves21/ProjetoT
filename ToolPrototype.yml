@@ -1,14 +1,14 @@
 aux_comando:
-- name: jmeter
+ - name: jmeter
   command: "./apache-jmeter-5.5/bin/jmeter -n -t"
   script: "s3://agnoperftest/TestResults/example.jmx"
 
-- name: k6
+ - name: k6
   command: ".k6-v0.44.1-linux-amd64/k6 run"
   script: "s3://agnoperftest/TestResults/test.js"
 
-- name: browser
+ - name: browser
   command: "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
-  script: https://petstore.octoperf.com/actions/Catalog.action
+  script: "https://petstore.octoperf.com/actions/Catalog.action"
 
 
