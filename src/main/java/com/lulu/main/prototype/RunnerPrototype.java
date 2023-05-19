@@ -6,13 +6,15 @@ import java.io.IOException;
 
 public class RunnerPrototype {
     public static void main(String[] args) throws IOException {
-        String dslYamlPath = "DslPrototype.yml";
-        String toolYamlPath = "ToolPrototype.yml";
+        String dslYamlPath = "./DslPrototype.yml";
+        String toolYamlPath = "./ToolPrototype.yml";
+        /*
         ClassLoader classLoader = RunnerPrototype.class.getClassLoader();
         String pathToYaml = classLoader.getResource(dslYamlPath).getPath();
         String pathToAuxYaml = classLoader.getResource(toolYamlPath).getPath();
+         */
 
-        new DslRunner(pathToYaml, pathToAuxYaml);
+        new DslRunner(dslYamlPath, dslYamlPath);
     }
 }
 
