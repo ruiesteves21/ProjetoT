@@ -11,4 +11,4 @@ phases:
   post_build:
     commands:
       - echo Running the application...
-      - java -cp target/LuluPerfTest-jar-with-dependencies.jar com.lulu.main.Main
+      - java -cp target/LuluPerfTest-jar-with-dependencies.jar com.lulu.main.prototype.RunnerPrototype
