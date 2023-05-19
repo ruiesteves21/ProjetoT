@@ -14,7 +14,7 @@ public class RunnerPrototype {
         String pathToAuxYaml = classLoader.getResource(toolYamlPath).getPath();
          */
 
-        new DslRunner(dslYamlPath, dslYamlPath);
+        new DslRunner(dslYamlPath, toolYamlPath);
     }
 }
 
