@@ -4,7 +4,7 @@ aux_comando:
   script: "s3://agnoperftest/TestResults/example.jmx"
 
 - name: k6
-  command: ".k6-v0.44.1-linux-amd64/k6 run"
+  command: "./k6-v0.44.1-linux-amd64/k6 run"
   script: "s3://agnoperftest/TestResults/test.js"
 
 - name: browser

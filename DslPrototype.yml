@@ -2,7 +2,7 @@ Performance Test:
   User Group:
     name: Default
     useCases:
-      - name: jmeter
+      - name: k6
         threads: 5
   Monitors:
     - name: Memory
