@@ -8,7 +8,7 @@ aux_comando:
   script: "s3://agnoperftest/TestResults/test.js"
 
 - name: browser
-  command: "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+  command: "./opt/google/chrome/chrome --headless --disable-extensions --disable-gpu --no-sandbox"
   script: "https://petstore.octoperf.com/actions/Catalog.action"
 
 
