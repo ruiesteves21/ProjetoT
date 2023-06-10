@@ -3,7 +3,7 @@ Performance Test:
     name: Default
     useCases:
       - name: k6
-        threads: 20
+        threads: 15
   Monitors:
     - name: Memory
       every: 500
