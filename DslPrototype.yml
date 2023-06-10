@@ -2,8 +2,8 @@ Performance Test:
   User Group:
     name: Default
     useCases:
-      - name: k6
-        threads: 5
+      - name: jmeter
+        threads: 15
   Monitors:
     - name: Memory
       every: 500
