@@ -3,7 +3,7 @@ Performance Test:
     name: Default
     useCases:
       - name: browser
-        threads: 1
+        threads: 5
   Monitors:
     - name: Memory
       every: 500
